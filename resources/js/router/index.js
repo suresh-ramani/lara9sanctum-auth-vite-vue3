@@ -8,12 +8,14 @@ const Register = () => import('@/components/Register.vue')
 
 /* Layouts */
 const DahboardLayout = () => import('@/components/layouts/Default.vue')
+const DashboardSidebar = () => import('@/components/layouts/DefaultSide.vue')
 /* Layouts */
 
 /* Authenticated Component */
 const Dashboard = () => import('@/components/Dashboard.vue')
 /* Authenticated Component */
-
+const GuestChat = () => import('@/components/GuestChat.vue')
+const GuestBox = () => import('@/components/GuestChatBox.vue')
 
 const routes = [
     {
@@ -21,10 +23,41 @@ const routes = [
         path: "/login",
         component: Login,
         meta: {
-            middleware: "guest",
+            middleware: "guest" ,
             title: `Login`
         }
     },
+
+    // Guest Routes
+      
+    {
+       name: "GuestChat",
+         path: "/",
+            component: GuestChat,
+            meta: {
+                
+                title: `Guest`
+
+            },
+            
+
+
+    },
+     
+    // Guest Chat Box Route 
+
+     {
+        name:"chatbox",
+        path:'/chatbox',
+        component: GuestBox,
+        meta: {
+            title: `Chat Box`
+        }
+
+
+     },
+
+
     {
         name: "register",
         path: "/register",
@@ -35,15 +68,15 @@ const routes = [
         }
     },
     {
-        path: "/",
-        component: DahboardLayout,
+        path: "/admin",
+        component: DashboardSidebar,
         meta: {
             middleware: "auth"
         },
         children: [
             {
                 name: "dashboard",
-                path: '/',
+                path: '/admin',
                 component: Dashboard,
                 meta: {
                     title: `Dashboard`
